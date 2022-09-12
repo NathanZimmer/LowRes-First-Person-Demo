@@ -14,14 +14,23 @@ public class FirstPersonMovementRB : MonoBehaviour
     [SerializeField] private float stepHeight = 0.1f;
     [SerializeField] private float stepForce = 1f;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float headBobYDistance;
+    [SerializeField] private float headBobXDistance;
+    [SerializeField] private float headBobTime;
+
+    private bool bobbing = false;
     private Rigidbody rb;
     private CapsuleCollider co;
     private bool isGrounded;
+    private Transform cam;
+    private Vector3 camCentralPos;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         co = GetComponentInChildren<CapsuleCollider>();
+        cam = GameObject.Find("Main Camera").transform;
+        camCentralPos = cam.transform.localPosition;
     }
 
     private void Update()
@@ -50,6 +59,11 @@ public class FirstPersonMovementRB : MonoBehaviour
         if (movement != Vector3.zero)
         {
             Step(movement.normalized);
+            if (!bobbing) StartCoroutine(HeadBob());
+        }
+        else
+        {
+            StartCoroutine(HeadHome());
         }
     }
 
@@ -76,5 +90,103 @@ public class FirstPersonMovementRB : MonoBehaviour
             rb.AddForce(Vector3.up * stepForce, ForceMode.Acceleration);
         }
 
+    }
+
+    private IEnumerator HeadBob()
+    {
+        Vector3 leftDestination = new Vector3(-headBobXDistance, camCentralPos.y + headBobYDistance, 0);
+        Vector3 rightDestination = new Vector3(headBobXDistance, camCentralPos.y + headBobYDistance, 0);
+        float timeElapsed = 0;
+        float normalizedTime;
+        Vector3 camStartPos = cam.localPosition;
+        bobbing = true;
+        
+
+       
+        while(true)
+        {
+
+            while (cam.localPosition.x < rightDestination.x)
+            {
+                if (rb.velocity == Vector3.zero)
+                {
+                    bobbing = false;
+                    yield break;
+                }
+
+                timeElapsed += Time.deltaTime;
+                normalizedTime = timeElapsed / (headBobTime / 2);
+                cam.localPosition = Vector3.Lerp(camStartPos, rightDestination, normalizedTime);
+                yield return null;
+            }
+
+            timeElapsed = 0;
+
+            while (cam.transform.localPosition.x > leftDestination.x)
+            {
+                if (rb.velocity == Vector3.zero)
+                {
+                    bobbing = false;
+                    yield break;
+                }
+
+                timeElapsed += Time.deltaTime;
+                normalizedTime = timeElapsed / headBobTime;
+
+                cam.localPosition =
+                Vector3.Lerp(
+                    Vector3.Lerp(rightDestination, camCentralPos, normalizedTime),
+                    Vector3.Lerp(camCentralPos, leftDestination, normalizedTime),
+                    normalizedTime
+                );
+
+                yield return null;
+            }
+
+            timeElapsed = 0;
+
+            while (cam.transform.localPosition.x < rightDestination.x)
+            {
+                if (rb.velocity == Vector3.zero)
+                {
+                    bobbing = false;
+                    yield break;
+                }
+
+                timeElapsed += Time.deltaTime;
+                normalizedTime = timeElapsed / headBobTime;
+
+                cam.localPosition =
+                Vector3.Lerp(
+                    Vector3.Lerp(leftDestination, camCentralPos, normalizedTime),
+                    Vector3.Lerp(camCentralPos, rightDestination, normalizedTime),
+                    normalizedTime
+                );
+
+                yield return null;
+            }
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator HeadHome()
+    {
+        Vector3 startPos = cam.localPosition;
+        bobbing = true;
+        float timeElapsed = 0;
+        float normalizedTime;
+
+        while (rb.velocity == Vector3.zero)
+        {
+            timeElapsed += Time.deltaTime;
+            normalizedTime = timeElapsed / (headBobTime / 2);
+
+            cam.transform.localPosition = Vector3.Lerp(startPos, camCentralPos, normalizedTime);
+
+            yield return null;
+        }
+
+        bobbing = false;
     }
 }
