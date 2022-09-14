@@ -371,6 +371,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/FirstPersonCamera.cs"
 "Assets/Scripts/FirstPersonMovementRB.cs"
+"Assets/Scripts/IKarmsController.cs"
 "Assets/Scripts/ResolutionSetter.cs"
 "Assets/Scripts/WeaponSway.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"

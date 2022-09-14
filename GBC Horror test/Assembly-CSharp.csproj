@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\FirstPersonMovementRB.cs" />
     <Compile Include="Assets\Scripts\FirstPersonCamera.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\IKarmsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
