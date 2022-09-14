@@ -10,14 +10,19 @@ public class FirstPersonMovementRB : MonoBehaviour
     [SerializeField] private float jumpAcceleration = 100;
     [SerializeField] private float friction = 10;
     [SerializeField] private float airFriction = 0.1f;
-    [Header("Other")]
+    [Header("Stepping")]
     [SerializeField] private float stepHeight = 0.1f;
     [SerializeField] private float stepForce = 1f;
-    [SerializeField] private LayerMask groundMask;
+    [Header("Head Bob")]
+    [SerializeField] private bool headBobEnabled = true;
     [SerializeField] private float headBobYDistance;
     [SerializeField] private float headBobXDistance;
     [SerializeField] private float headBobTime;
+    [SerializeField] private float returnTimeModifier;
+    [Header("Other")]
+    [SerializeField] private LayerMask groundMask;
 
+    private bool isMoving;
     private bool bobbing = false;
     private Rigidbody rb;
     private CapsuleCollider co;
@@ -43,6 +48,7 @@ public class FirstPersonMovementRB : MonoBehaviour
         //isGrounded = Physics.Raycast(co.bounds.center, Vector3.down, co.bounds.extents.y + 0.1f, groundMask);
         //isGrounded = Physics.SphereCast(co.bounds.center, co.radius, Vector3.down, out RaycastHit hit, 0.5f, groundMask);
         isGrounded = Physics.BoxCast(co.bounds.center, new Vector3(co.radius, 0.1f, co.radius), Vector3.down, Quaternion.Euler(Vector3.zero), co.bounds.extents.y + 0.1f);
+        isMoving = rb.velocity != Vector3.zero;
         Movement();
     }
 
@@ -59,9 +65,9 @@ public class FirstPersonMovementRB : MonoBehaviour
         if (movement != Vector3.zero)
         {
             Step(movement.normalized);
-            if (!bobbing) StartCoroutine(HeadBob());
+            if (!bobbing && headBobEnabled) StartCoroutine(HeadBob());
         }
-        else
+        else if (headBobEnabled)
         {
             StartCoroutine(HeadHome());
         }
@@ -106,7 +112,7 @@ public class FirstPersonMovementRB : MonoBehaviour
         while(true)
         {
 
-            while (cam.localPosition.x < rightDestination.x)
+            while (cam.localPosition.x < rightDestination.x - 0.001f)
             {
                 if (rb.velocity == Vector3.zero)
                 {
@@ -122,7 +128,7 @@ public class FirstPersonMovementRB : MonoBehaviour
 
             timeElapsed = 0;
 
-            while (cam.transform.localPosition.x > leftDestination.x)
+            while (cam.localPosition.x > leftDestination.x + 0.001f)
             {
                 if (rb.velocity == Vector3.zero)
                 {
@@ -145,7 +151,7 @@ public class FirstPersonMovementRB : MonoBehaviour
 
             timeElapsed = 0;
 
-            while (cam.transform.localPosition.x < rightDestination.x)
+            while (cam.localPosition.x < rightDestination.x - 0.001f)
             {
                 if (rb.velocity == Vector3.zero)
                 {
@@ -180,7 +186,7 @@ public class FirstPersonMovementRB : MonoBehaviour
         while (rb.velocity == Vector3.zero)
         {
             timeElapsed += Time.deltaTime;
-            normalizedTime = timeElapsed / (headBobTime / 2);
+            normalizedTime = timeElapsed / (headBobTime / returnTimeModifier);
 
             cam.transform.localPosition = Vector3.Lerp(startPos, camCentralPos, normalizedTime);
 
@@ -188,5 +194,10 @@ public class FirstPersonMovementRB : MonoBehaviour
         }
 
         bobbing = false;
+    }
+
+    public bool GetIsMoving() 
+    {
+        return isMoving;
     }
 }

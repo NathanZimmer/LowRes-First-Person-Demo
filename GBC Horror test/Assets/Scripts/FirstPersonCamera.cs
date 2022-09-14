@@ -12,9 +12,10 @@ public class FirstPersonCamera : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 60; 
+        //Application.targetFrameRate = 60; 
         mainCamera = GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
+        Screen.SetResolution(1280, 720, true);
     }
     
     private void Update()

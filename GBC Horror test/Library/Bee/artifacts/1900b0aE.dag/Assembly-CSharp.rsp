@@ -372,6 +372,7 @@
 "Assets/Scripts/FirstPersonCamera.cs"
 "Assets/Scripts/FirstPersonMovementRB.cs"
 "Assets/Scripts/ResolutionSetter.cs"
+"Assets/Scripts/WeaponSway.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 
