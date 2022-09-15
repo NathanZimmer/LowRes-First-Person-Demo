@@ -373,6 +373,7 @@
 "Assets/Scripts/FirstPersonMovementRB.cs"
 "Assets/Scripts/IKarmsController.cs"
 "Assets/Scripts/ResolutionSetter.cs"
+"Assets/Scripts/weaponShooting.cs"
 "Assets/Scripts/WeaponSway.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
