@@ -6,7 +6,7 @@ public class FirstPersonCamera : MonoBehaviour
 {
     [SerializeField] private float mouseSensitivity = 300;
     private Camera mainCamera;
-    private float yRotation = 0;
+    public float yRotation = 0;
     private bool isPaused = false;
 
 
@@ -14,6 +14,7 @@ public class FirstPersonCamera : MonoBehaviour
     {
         //Application.targetFrameRate = 60; 
         mainCamera = GetComponentInChildren<Camera>();
+        //weaponCamera = mainCamera.gameObject.GetComponentInChildren<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
         Screen.SetResolution(1280, 720, true);
     }
@@ -39,6 +40,7 @@ public class FirstPersonCamera : MonoBehaviour
             transform.Rotate(Vector3.up * mouseX);
             yRotation -= mouseY;
             yRotation = Mathf.Clamp(yRotation, -90, 90);
+
             mainCamera.transform.localRotation = Quaternion.Euler(yRotation, 0, 0);
         }
     }
