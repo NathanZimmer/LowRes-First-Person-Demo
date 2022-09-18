@@ -27,7 +27,7 @@ public class IKarmsController : MonoBehaviour
         animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1);
 
         // left hand
-        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 100);
         animator.SetIKPosition(AvatarIKGoal.LeftHand, lhPoint.position);
         animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
         animator.SetIKRotation(AvatarIKGoal.LeftHand, lhPoint.rotation);
