@@ -371,6 +371,8 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/HDRP Settings/TutorialInfo/Scripts/Readme.cs"
 "Assets/Scripts/CameraShake.cs"
+"Assets/Scripts/DecalRemoval.cs"
+"Assets/Scripts/EnemyTest.cs"
 "Assets/Scripts/FirstPersonCamera.cs"
 "Assets/Scripts/FirstPersonMovementRB.cs"
 "Assets/Scripts/IKarmsController.cs"

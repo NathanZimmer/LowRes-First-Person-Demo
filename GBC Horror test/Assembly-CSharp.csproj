@@ -64,6 +64,8 @@
     <Compile Include="Assets\Scripts\FirstPersonMovementRB.cs" />
     <Compile Include="Assets\Scripts\FirstPersonCamera.cs" />
     <Compile Include="Assets\HDRP Settings\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\EnemyTest.cs" />
+    <Compile Include="Assets\Scripts\DecalRemoval.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

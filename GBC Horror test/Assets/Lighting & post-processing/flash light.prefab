@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9077828317619623340}
   - component: {fileID: 9077828317619623341}
   - component: {fileID: 9077828317619623342}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: flash light
-  m_TagString: Untagged
+  m_TagString: effects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,8 +90,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 2873
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 1.6258945e+25, y: 4.8554528e+33, z: 2.8168867e+20,
-    w: 1.0899303e+27}
+  m_BoundingSphereOverride: {x: 1.5e-44, y: 9.015e-42, z: 1.7e-44, w: 9.016e-42}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

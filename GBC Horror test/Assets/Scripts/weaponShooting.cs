@@ -17,6 +17,7 @@ public class weaponShooting : MonoBehaviour
     [SerializeField] private LayerMask bulletMask;
     [SerializeField] private GameObject decal;
 
+    public int decalNum = 0;
     private int ammoCount = 2;
 
     private void Start()
@@ -107,8 +108,16 @@ public class weaponShooting : MonoBehaviour
             // applying decal
             if (hit.point != null)
             {
-                Instantiate(decal, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
-                // make enemies take damage
+                decalNum++;
+                var newDecal = Instantiate(decal, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                DecalRemoval remover = newDecal.GetComponent<DecalRemoval>();
+                remover.decalIndex = decalNum;
+                remover.maxDecals = 300;
+                
+                if (hit.transform.gameObject.CompareTag("Enemy"))
+                {
+                    hit.transform.gameObject.GetComponent<EnemyTest>().CalculateHits(5);
+                }
             }
         }
     }
