@@ -15,7 +15,6 @@ public class EnemyTest : MonoBehaviour
     private void LateUpdate()
     {
         GetHit(damage);
-        damage = 0;
     }
 
     public void CalculateHits(float damage)
@@ -49,5 +48,6 @@ public class EnemyTest : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         defaultMaterial.color = Color.white;
+        damage = 0;
     }
 }
