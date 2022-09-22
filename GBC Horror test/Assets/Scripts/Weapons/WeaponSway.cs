@@ -29,10 +29,14 @@ public class WeaponSway : MonoBehaviour
     private bool bobbing = false;
     private bool aiming = false;
     private Vector3 homePosition;
+    private Vector3 defaultPosition;
+    private Quaternion defaultRotation;
 
-    private void Start()
+    private void OnEnable()
     {
         homePosition = transform.localPosition;
+        defaultPosition = transform.localPosition;
+        defaultRotation = transform.localRotation;
 
         leftTarget = new Vector3(homePosition.x - swayXDistance, homePosition.y + swayYDistance, homePosition.z);
         rightTarget = new Vector3(homePosition.x + swayXDistance, homePosition.y + swayYDistance, homePosition.z);
@@ -42,6 +46,20 @@ public class WeaponSway : MonoBehaviour
         currentLeftTarget = leftTarget;
         currentRightTarget = rightTarget;
         currentCenterTarget = homePosition;
+    }
+
+    private void OnDisable()
+    {
+        transform.localPosition = defaultPosition;
+        transform.localRotation = defaultRotation;
+
+        currentLeftTarget = leftTarget;
+        currentRightTarget = rightTarget;
+        currentCenterTarget = homePosition;
+
+        aiming = false;
+        bobbing = false;
+        StopAllCoroutines();
     }
 
     private void Update()

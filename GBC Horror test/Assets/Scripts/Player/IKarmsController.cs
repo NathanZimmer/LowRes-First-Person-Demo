@@ -10,10 +10,16 @@ public class IKarmsController : MonoBehaviour
     [SerializeField] private Transform lePoint;
 
     private Animator animator;
+    private Transform[] originalTransforms = new Transform[4];
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+
+        originalTransforms[0] = rhPoint;
+        originalTransforms[1] = rePoint;
+        originalTransforms[2] = lhPoint;
+        originalTransforms[3] = lePoint;
     }
 
     private void OnAnimatorIK(int layerIndex)
@@ -33,5 +39,21 @@ public class IKarmsController : MonoBehaviour
         animator.SetIKRotation(AvatarIKGoal.LeftHand, lhPoint.rotation);
         animator.SetIKHintPosition(AvatarIKHint.LeftElbow, lePoint.position);
         animator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1);
+    }
+
+    public void SetIKTransforms(Transform rhPoint, Transform rePoint, Transform lhPoint, Transform lePoint)
+    {
+        this.rhPoint = rhPoint;
+        this.rePoint = rePoint;
+        this.lhPoint = lhPoint;
+        this.lePoint = lePoint;
+    }
+
+    public void ResetIKTransforms()
+    {
+        rhPoint = originalTransforms[0];
+        rePoint = originalTransforms[1];
+        lhPoint = originalTransforms[2];
+        lePoint = originalTransforms[3];
     }
 }

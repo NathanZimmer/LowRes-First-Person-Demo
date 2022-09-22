@@ -19,17 +19,6 @@ public abstract class Weapons : MonoBehaviour
     [SerializeField] protected LayerMask bulletsHit;
     [SerializeField] protected int magazineSize;
     [SerializeField] protected bool infiniteAmmo;
-    [Header("Inverse Kinematics")] // do not change the parent of hands or elbows. Leave them in IK folder
-    [SerializeField] protected Transform rightHand;
-    [SerializeField] protected Transform leftHand;
-    [SerializeField] protected Vector3 rightHandPoint;
-    [SerializeField] protected Vector3 leftHandPoint;
-    [SerializeField] protected Vector3 rightHandRotation;
-    [SerializeField] protected Vector3 leftHandRotation;
-    [SerializeField] protected Transform rightElbow;
-    [SerializeField] protected Transform leftElbow;
-    [SerializeField] protected Vector3 rightElbowPoint;
-    [SerializeField] protected Vector3 leftElbowPoint;
     [Header("Other")]
     [SerializeField] protected Transform mainCam;
     [SerializeField] protected FirstPersonCamera cameraScript;
@@ -38,24 +27,21 @@ public abstract class Weapons : MonoBehaviour
 
     protected int bulletsLeft;
     protected Animator animator; // only supports animations titled: "Idle" "Shot" "Reload" and "Dryfire"
+    private bool reloading = false;
+
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         bulletsLeft = magazineSize;
+    }
 
-        // setting ik hand locations/parent
-
-        rightHand.localPosition = rightHandPoint;
-        leftHand.localPosition = leftHandPoint;
-        rightElbow.localPosition = rightElbowPoint;
-        leftElbow.localPosition = leftElbowPoint;
-
-        rightHand.localRotation = Quaternion.Euler(rightHandRotation);
-        leftHand.localRotation = Quaternion.Euler(leftHandRotation);
-
-        rightHand.parent = transform;
-        leftHand.parent = transform;
+    private void OnEnable()
+    {
+        if (reloading)
+        {
+            Reload();
+        }
     }
 
     private void Update()
@@ -92,6 +78,8 @@ public abstract class Weapons : MonoBehaviour
         {
             Reload();
         }
+
+        reloading = animator.GetCurrentAnimatorStateInfo(0).IsName("Reload");
     }
 
     private IEnumerator Recoil()

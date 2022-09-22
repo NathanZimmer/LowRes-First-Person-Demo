@@ -376,6 +376,7 @@
 "Assets/Scripts/Player/HeadSway.cs"
 "Assets/Scripts/Player/IKarmsController.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
+"Assets/Scripts/Player/WeaponSelection.cs"
 "Assets/Scripts/ResolutionSetter.cs"
 "Assets/Scripts/UnParent.cs"
 "Assets/Scripts/Weapons/BulletDecalController.cs"

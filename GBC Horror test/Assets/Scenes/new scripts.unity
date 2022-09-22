@@ -15350,6 +15350,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8177687265748098391, guid: 518ee93c5b5ff644785aaeb442876ed4,
+        type: 3}
+      propertyPath: infiniteAmmo
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8177687266282977447, guid: 518ee93c5b5ff644785aaeb442876ed4,
         type: 3}
       propertyPath: m_LocalPosition.z
