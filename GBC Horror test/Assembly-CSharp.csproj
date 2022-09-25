@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Weapons\Pistol.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponSway.cs" />
     <Compile Include="Assets\Scripts\Weapons\Shotgun.cs" />
+    <Compile Include="Assets\Scripts\Player\WeaponSelection.cs" />
     <Compile Include="Assets\Scripts\EnemyTest.cs" />
     <Compile Include="Assets\Scripts\Player\FirstPersonCamera.cs" />
     <Compile Include="Assets\Scripts\Weapons\BulletDecalController.cs" />
@@ -70,7 +71,6 @@
     <Compile Include="Assets\HDRP Settings\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons.cs" />
     <Compile Include="Assets\Scripts\Player\HeadSway.cs" />
-    <Compile Include="Assets\Scripts\Player\WeaponSelection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
