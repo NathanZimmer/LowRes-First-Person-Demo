@@ -31,7 +31,6 @@ public class WeaponSway : MonoBehaviour
     private Vector3 homePosition;
     private Vector3 defaultPosition;
     private Quaternion defaultRotation;
-
     private void OnEnable()
     {
         homePosition = transform.localPosition;
@@ -65,8 +64,14 @@ public class WeaponSway : MonoBehaviour
     private void Update()
     {
         // lerps current targets from default positions to ADS positions when mouse1 is pressed and back when it is released
-        if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            aiming = true;
+            StartCoroutine(Aim());
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            aiming = false;
             StartCoroutine(Aim());
         }
 
@@ -185,8 +190,6 @@ public class WeaponSway : MonoBehaviour
     {
         float timeElapsed = 0;
         float normalizedTime;
-
-        aiming = !aiming;
 
         // if we are aiming, lerps current targets from default targets to ADS targets
         while (aiming && currentCenterTarget != aimPosition)

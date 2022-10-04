@@ -24,6 +24,7 @@ public abstract class Weapons : MonoBehaviour
     [SerializeField] protected FirstPersonCamera cameraScript;
     [SerializeField] protected Transform effectParent;
     [SerializeField] protected Transform weaponTip;
+    [SerializeField] protected WeaponSway weaponSway;
 
     protected int bulletsLeft;
     protected Animator animator; // only supports animations titled: "Idle" "Shot" "Reload" and "Dryfire"
@@ -50,10 +51,6 @@ public abstract class Weapons : MonoBehaviour
         {
             if (bulletsLeft > 0 || infiniteAmmo)
             {
-                // removing bullet and playing animation
-                bulletsLeft--;
-                animator.Play("Shot");
-
                 // moving effects to weapon tip and playing 
                 effectParent.position = weaponTip.position;
                 effectParent.rotation = weaponTip.rotation;
@@ -66,6 +63,7 @@ public abstract class Weapons : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(Recoil());
                 Projectile();
+                bulletsLeft--;
             }
             else
             {

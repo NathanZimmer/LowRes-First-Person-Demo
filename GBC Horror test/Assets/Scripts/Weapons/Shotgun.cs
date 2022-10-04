@@ -11,6 +11,7 @@ public class Shotgun : Weapons
 
     protected override void Projectile()
     {
+        animator.Play("Shot");
         RaycastHit hit;
 
         for (int i = 0; i < pelletCount; i++)
@@ -23,7 +24,8 @@ public class Shotgun : Weapons
             if (hit.point != null)
             {
                 drawDecals(hit);
-                // if hit is an enemy do something
+                if (hit.transform.CompareTag("Enemy"))
+                    hit.transform.gameObject.GetComponent<EnemyTest>().CalculateHits(30);
             }
         }
     }

@@ -58,19 +58,26 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player\IKarmsController.cs" />
     <Compile Include="Assets\Scripts\ResolutionSetter.cs" />
+    <Compile Include="Assets\Scripts\Weapons\LastShot.cs" />
     <Compile Include="Assets\Scripts\Player\CameraShake.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Shooting.cs" />
     <Compile Include="Assets\Scripts\UnParent.cs" />
     <Compile Include="Assets\Scripts\Weapons\Pistol.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponStateTest.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponSway.cs" />
+    <Compile Include="Assets\Scripts\Animation state machine test\AnimationTest.cs" />
     <Compile Include="Assets\Scripts\Weapons\Shotgun.cs" />
     <Compile Include="Assets\Scripts\Player\WeaponSelection.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Empy.cs" />
     <Compile Include="Assets\Scripts\EnemyTest.cs" />
     <Compile Include="Assets\Scripts\Player\FirstPersonCamera.cs" />
     <Compile Include="Assets\Scripts\Weapons\BulletDecalController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\HDRP Settings\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapons.cs" />
+    <Compile Include="Assets\Scripts\Weapons\StateChange.cs" />
     <Compile Include="Assets\Scripts\Player\HeadSway.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Reloading.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
