@@ -1,5 +1,5 @@
 # GBC-Test
-A horror game using some of the rendering techniques from [this GCC talk](https://www.youtube.com/watch?v=ZW8gWgpptI8&ab_channel=GDC). 
+A horror game using some of the rendering techniques from [this GDC talk](https://www.youtube.com/watch?v=ZW8gWgpptI8&ab_channel=GDC). 
 
 Current Progress:
 
