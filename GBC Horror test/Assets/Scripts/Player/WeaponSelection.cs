@@ -24,6 +24,9 @@ public class WeaponSelection : MonoBehaviour
 
     private void Start()
     {
+        weapon1.GetComponentInChildren<WeaponSM>().weaponIndex = 1;
+        weapon2.GetComponentInChildren<WeaponSM>().weaponIndex = 2;
+
         switch (defaultSelected) 
         {
             case 1:
