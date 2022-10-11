@@ -8,6 +8,7 @@ public class Reload : StateMachineBehaviour
     {
         animator.GetComponent<WeaponSM>().ReloadSound();
     }
+
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<WeaponSM>().Reload();

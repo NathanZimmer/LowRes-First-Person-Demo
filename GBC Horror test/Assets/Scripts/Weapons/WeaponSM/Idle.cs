@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class Idle : StateMachineBehaviour
 {
+    [SerializeField] private bool limitRelaod = false;
+    [SerializeField] private int minBullets;
+
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.GetComponent<WeaponSM>().GetBulletsLeft() <= 0)
+        int bulletsLeft = animator.GetComponent<WeaponSM>().GetBulletsLeft();
+
+        if (bulletsLeft <= 0)
         {
             animator.Play("Empty Idle");
         }
 
-        if (Input.GetAxisRaw("Mouse ScrollWheel") != 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            animator.Play("Unequip");
-        }
-        else if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (animator.GetComponent<WeaponSM>().GetBulletsLeft() == 1)
+            if (bulletsLeft == 1)
                 animator.Play("Last Shot");
             else
                 animator.Play("Shot");
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.R) && (!limitRelaod || bulletsLeft <= minBullets))
         {
             animator.Play("Reload");
         }

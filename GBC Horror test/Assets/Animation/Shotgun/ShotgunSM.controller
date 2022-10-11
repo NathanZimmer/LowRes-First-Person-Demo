@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e38a594a8fe0a40ad7f33a57e110f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  limitRelaod: 1
+  minBullets: 1
 --- !u!1101 &-7759850619414744442
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

@@ -31,6 +31,7 @@ public class WeaponSway : MonoBehaviour
     private Vector3 homePosition;
     private Vector3 defaultPosition;
     private Quaternion defaultRotation;
+
     private void OnEnable()
     {
         homePosition = transform.localPosition;
